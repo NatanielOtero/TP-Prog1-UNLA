@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1592592235 source:c:\users\natak\desktop\programacion\c\tp-1prog\funciones.c
+	<stdio.h>
+	<conio.h>
+	<time.h>
+	<stdlib.h>
+	"funciones.h"
+
+1592591609 c:\users\natak\desktop\programacion\c\tp-1prog\funciones.h
+
+1592592235 source:c:\users\natak\desktop\programacion\c\tp-1prog\main.c
+	<stdio.h>
+	<conio.h>
+	<time.h>
+	<stdlib.h>
+	"funciones.h"
+
