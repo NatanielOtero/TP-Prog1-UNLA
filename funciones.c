@@ -4,10 +4,11 @@
 #include <stdlib.h>
 #include "funciones.h"
 
-//Ejecuta el menu de carga de cartons una vez validado que haya elegido la cantidad de cartones con los que quiere jugar
-void MenuPrincipal()
+void MenuPrincipal(int estado,int limite)
 {
     system("cls");
+    if (estado <limite)
+    {
     int op;
       do{
            printf("\n******** Elija el modo de juego *************");
@@ -22,25 +23,99 @@ void MenuPrincipal()
 
             case 1:
                 //LLAMAR FUNCION GENERAR POR TECLADO
-                CargarCarton(); //Para probar que anda
+                switch(estado)
+                    {
+
+                    case 0:
+                        Vaciar(Disp);
+                        Normal(carton1,Disp);
+                        Vaciar(Disp);
+                        estado++;
+                        MenuPrincipal(estado,limite);
+                    break;
+
+                    case 1:
+                        Vaciar(Disp);
+                        Normal(carton2,Disp);
+                        Vaciar(Disp);
+                        estado++;
+                        MenuPrincipal(estado,limite);
+                    break;
+
+                    case 2:
+                        Vaciar(Disp);
+                        Normal(carton3,Disp);
+                        Vaciar(Disp);
+                        estado++;
+                        MenuPrincipal(estado,limite);
+                    break;
+
+                    default:
+                        printf("error de mierda");
+                    break;
+                    }
                 break;
             case 2:
                 //LLAMAR FUNCION GENERAR ALEATORIO
+                    switch(estado)
+                    {
+
+                    case 0:
+                        Aleatorio(carton1,Disp);
+                        Vaciar(Disp);
+                        estado++;
+                        MenuPrincipal(estado,limite);
+                    break;
+
+                    case 1:
+                        Aleatorio(carton2,Disp);
+                        Vaciar(Disp);
+                        estado++;
+                        MenuPrincipal(estado,limite);
+                    break;
+
+                    case 2:
+                        Aleatorio(carton3,Disp);
+                        Vaciar(Disp);
+                        estado++;
+                        MenuPrincipal(estado,limite);
+                    break;
+
+                    default:
+                        printf("error de mierda");
+                    break;
+                    }
+
+
+
                 break;
             default:
                 system("cls");
                 printf("\n*****************************************************");
                 printf("\n******** Opcion invalida intente de nuevo ***********");
                 printf("\n*****************************************************");
+                printf("\n");
             break;
            }
         }
        while(op > 2 || op < 1);
-
-
+    }
+    else
+    {
+        ComenzarJuego();
+    }
 }
 
-//Valida la cantidad de cartones, solo dejando elegir entre 1 2 o 3 por una validacion de menu
+void ComenzarJuego()
+{
+    system("cls");
+           printf("\n******** Bienvenido elija acciones **********");
+           printf("\n*********************************************");
+           printf("\n****** -1- Mostrar cartones *****************");
+           printf("\n****** -2- Sacar Bolila *********************");
+           printf("\n*********************************************");
+}
+
 int CantidadCartones()
 {
     int cantidad = 0;
@@ -64,8 +139,10 @@ int CantidadCartones()
               default:
                 system("cls");
                 printf("\n*****************************************************");
-                printf("\n******** Opcion invalida intente de nuevo ***********");
+                printf("\n******** OPCION INVALIDA INGRESE OTRO NUMERO ********");
                 printf("\n*****************************************************");
+                getch();
+                system("cls");
                 break;
          }
       }
@@ -73,46 +150,73 @@ int CantidadCartones()
      return 0;
 }
 
-void CargarCarton()
+void Normal(int Cart[5][3])
 {
-    //Projecto 01
-	srand(time(NULL)); // movido de lugar
-	int bolilla[91],numero=0; // bolilla es un vector de control unicamente los numeros se generan en numero
-	int numerosDisp[91];
-	int cartonPrueba[5][3]={0};
-	Vaciar(bolilla);
-	Vaciar(numerosDisp);
-	//generarAleatorio(cartonPrueba,numerosDisp);
-	for(int I=0;I<20;I++)
+    int Comp[91];
+    Vaciar(Comp);
+    int numero=0;
+    int faltante=16;
+    for(int C=0;C<3;C++)
 	{
-	numero=rand()%91;
-	if(bolilla[numero] == 0)
-        {
-            printf("Salio el Numero ---> %d\n",numero);
-            bolilla[numero] = -1;
+		for(int F=0;F<5;F++)
+		{
+         faltante--;
+         system("cls");
+         printf("\n*****************************************************");
+         printf("\n***** Bienvenido a la carga manual de cartones ******");
+         printf("\n******* Cargando Fila %2d... *************************",(C+1));
+         printf("\n******* Falta Cargar %2d espacios todavia ************",faltante);
+         printf("\n*****************************************************");
+         printf("\n*** Ingrese un numero para el siguiente espacio *****");
+         printf("\n*****************************************************\n");
+
+         scanf("%d",&numero);
+         printf("%d",numero);
+         if(Comp[numero] == 0)
+         {
+            Cart[F][C]=numero;
+            Comp[numero] = -1;
+         }
+         else
+         {
+                F--;
+                faltante++;
+                system("cls");
+                printf("\n*****************************************************");
+                printf("\n*************** ERROR NUMERO REPETIDO ***************");
+                printf("\n*****************************************************");
+                getch();
+                system("cls");
+         }
+
+
         }
+
 	}
 }
-void generarAleatorio(int Cart[5][3],int disp[91])
+
+void Aleatorio(int Cart[5][3],int disp[91])
 {
 	int numero=0;
 	for(int C=0;C<3;C++)
 	{
 		for(int F=0;F<5;F++)
 		{
-			numero=rand()%91;
-			while(disp == 0)
+            numero=rand()%91;
+			while(disp[numero] != 0)
 			{
 				numero=rand()%91;
 			}
 			if(disp[numero] == 0)
 			{
 				Cart[F][C]=numero;
+				disp[numero] = -1;
 				printf(" %d ",numero);
 			}
 		}
 		printf(" \n");
 	}
+	getch();
 }
 void Vaciar(int Vec[91])
 {
