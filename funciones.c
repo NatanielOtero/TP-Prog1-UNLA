@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include "funciones.h"
 
-void MenuPrincipal()
+void MenuPrincipal(int &estado,int limite)
 {
     system("cls");
+    if (estado <3)
+    {
     int op;
       do{
            printf("\n******** Elija el modo de juego *************");
@@ -35,6 +37,12 @@ void MenuPrincipal()
            }
         }
        while(op > 2 || op < 1);
+    }
+    else
+    {
+        printf("error");
+    }
+    
 
 }
 
