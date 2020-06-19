@@ -4,11 +4,10 @@
 #include <stdlib.h>
 #include "funciones.h"
 
-void MenuPrincipal(int &estado,int limite)
+//Ejecuta el menu de carga de cartons una vez validado que haya elegido la cantidad de cartones con los que quiere jugar
+void MenuPrincipal()
 {
     system("cls");
-    if (estado <3)
-    {
     int op;
       do{
            printf("\n******** Elija el modo de juego *************");
@@ -37,17 +36,11 @@ void MenuPrincipal(int &estado,int limite)
            }
         }
        while(op > 2 || op < 1);
-    }
-    else
-    {
-        printf("error");
-    }
-    
+
 
 }
 
-
-
+//Valida la cantidad de cartones, solo dejando elegir entre 1 2 o 3 por una validacion de menu
 int CantidadCartones()
 {
     int cantidad = 0;
