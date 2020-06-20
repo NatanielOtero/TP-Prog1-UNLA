@@ -12,6 +12,7 @@ void MenuPrincipal(int estado,int limite)
     {
     int op;
       do{
+      	   printf("\n*********************************************");
            printf("\n******** Elija el modo de juego *************");
            printf("\n*********************************************");
            printf("\n****** -1- Carton personalizado *************");
@@ -52,7 +53,7 @@ void MenuPrincipal(int estado,int limite)
                     break;
 
                     default:
-                        printf("error de mierda");
+                        printf("---->ERROR<----");
                     break;
                     }
                 break;
@@ -83,7 +84,7 @@ void MenuPrincipal(int estado,int limite)
                     break;
 
                     default:
-                        printf("error de mierda");
+                        printf("---->ERROR<----");
                     break;
                     }
 
@@ -109,12 +110,31 @@ void MenuPrincipal(int estado,int limite)
 
 void ComenzarJuego()
 {
-    system("cls");
+	int OPC=0;
+    	system("cls");
+    	   printf("\n*********************************************");
            printf("\n******** Bienvenido elija acciones **********");
            printf("\n*********************************************");
            printf("\n****** -1- Mostrar cartones *****************");
            printf("\n****** -2- Sacar Bolila *********************");
            printf("\n*********************************************");
+           scanf("%d",&OPC);
+           switch(OPC)
+           {
+           	case 1:
+           		//FUNCION MOSTRAR CARTONES
+           	break;
+           	case 2:
+           		//FUNCION CARGAR BOLILLAS
+        	break;
+        	default:
+        	    system("cls");
+                printf("\n*****************************************************");
+                printf("\n******** Opcion invalida intente de nuevo ***********");
+                printf("\n*****************************************************");
+                printf("\n");
+        	break;
+		   }
 }
 
 int CantidadCartones()
@@ -156,8 +176,7 @@ void Normal(int Cart[5][3],int Comp[91])
     Vaciar(Comp);
     int numero=0;
     int faltante=16;
-    int C;
-    int F;
+    int C=0,F=0;
     for(C=0;C<3;C++)
 	{
 		for(F=0;F<5;F++)
@@ -200,8 +219,7 @@ void Normal(int Cart[5][3],int Comp[91])
 void Aleatorio(int Cart[5][3],int disp[91])
 {
 	int numero=0;
-	int C;
-	int F;
+	int C=0,F=0;
 	for(C=0;C<3;C++)
 	{
 		for(F=0;F<5;F++)
@@ -224,7 +242,7 @@ void Aleatorio(int Cart[5][3],int disp[91])
 }
 void Vaciar(int Vec[91])
 {
-	int I;
+	int I=0;
 	for(I=0;I<91;I++)
 	{
 		if(I == 0)
