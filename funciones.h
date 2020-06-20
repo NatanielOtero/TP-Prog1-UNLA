@@ -7,9 +7,10 @@ int Disp[91];
 int bolilla[91];
 int numero;
 
+void Normal(int Cart[5][3],int Comp[91];);
 void MenuPrincipal(int estado,int limite);
 int CantidadCartones();
-
+void ComenzarJuego();
 void Aleatorio(int Cart[5][3],int disp[91]);
 void Vaciar(int Vec[91]); // mas seguro que asignar Vec[91] = {0};
 void CargarCarton();

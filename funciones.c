@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "funciones.h"
 
+
 void MenuPrincipal(int estado,int limite)
 {
     system("cls");
@@ -150,15 +151,16 @@ int CantidadCartones()
      return 0;
 }
 
-void Normal(int Cart[5][3])
+void Normal(int Cart[5][3],int Comp[91])
 {
-    int Comp[91];
     Vaciar(Comp);
     int numero=0;
     int faltante=16;
-    for(int C=0;C<3;C++)
+    int C;
+    int F;
+    for(C=0;C<3;C++)
 	{
-		for(int F=0;F<5;F++)
+		for(F=0;F<5;F++)
 		{
          faltante--;
          system("cls");
@@ -198,9 +200,11 @@ void Normal(int Cart[5][3])
 void Aleatorio(int Cart[5][3],int disp[91])
 {
 	int numero=0;
-	for(int C=0;C<3;C++)
+	int C;
+	int F;
+	for(C=0;C<3;C++)
 	{
-		for(int F=0;F<5;F++)
+		for(F=0;F<5;F++)
 		{
             numero=rand()%91;
 			while(disp[numero] != 0)
@@ -220,7 +224,8 @@ void Aleatorio(int Cart[5][3],int disp[91])
 }
 void Vaciar(int Vec[91])
 {
-	for(int I=0;I<91;I++)
+	int I;
+	for(I=0;I<91;I++)
 	{
 		if(I == 0)
 		{
