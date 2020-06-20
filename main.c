@@ -2,7 +2,10 @@
 #include <conio.h>
 #include <time.h>
 #include <stdlib.h>
-#include "funciones.h"
+#include "funciones.c"
+#include "picturillo.c"
+
+
 int carton1[5][3];
 int carton2[5][3];
 int carton3[5][3];
