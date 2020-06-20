@@ -255,7 +255,7 @@ void Normal(int Cart[5][3],int Comp[91])
          faltante--;
          system("cls");
          printf("\n*****************************************************");
-         printf("\n***** Bienvenido a la carga manual de cartones ******");
+         printf("\n*****************************************************");
          printf("\n******* Cargando Fila %2d... *************************",(C+1));
          printf("\n******* Falta Cargar %2d espacios todavia ************",faltante);
          printf("\n*****************************************************");
@@ -263,6 +263,19 @@ void Normal(int Cart[5][3],int Comp[91])
          printf("\n*****************************************************\n");
 
          scanf("%d",&numero);
+         while(numero > 90 || numero <= 0)
+         {
+          		system("cls");
+                printf("\n*****************************************************");
+                printf("\n******* ERROR NUMERO INVALIDO ***********************");
+                printf("\n******* Ingrese un numero desde 1 a 90 **************");
+				printf("\n******* Cargando Fila %2d... *************************",(C+1));
+		        printf("\n******* Falta Cargar %2d espacios todavia ************",faltante);
+		        printf("\n*****************************************************");
+		        printf("\n*** Ingrese un numero para el siguiente espacio *****");
+		        printf("\n*****************************************************\n");
+				scanf("%d",&numero);	
+		 }
          printf("%d",numero);
          if(Comp[numero] == 0)
          {
