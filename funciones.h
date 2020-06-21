@@ -7,6 +7,7 @@ int Disp[91];
 int bolilla[91];
 int numero;
 
+void MostrarCarton(int cantidad);
 void colorear(int Matr[5][3],int Dispo[91]);
 void Normal(int Cart[5][3],int Comp[91];);
 void MenuPrincipal(int estado,int limite);

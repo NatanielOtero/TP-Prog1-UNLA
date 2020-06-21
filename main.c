@@ -4,12 +4,12 @@
 #include <stdlib.h>
 #include <windows.h>
 #include "funciones.h"
-int carton1[5][3];
+/*int carton1[5][3];
 int carton2[5][3];
 int carton3[5][3];
 int Disp[91];
 int bolilla[91];
-int numero;
+int numero;*/
 int main()
 {
     srand(time(NULL));
