@@ -105,7 +105,7 @@ void MenuPrincipal(int estado,int limite)
     }
     else
     {
-        ComenzarJuego();
+        ComenzarJuego(limite);
     }
 }
 
@@ -173,7 +173,7 @@ void MostrarCarton(int cantidad)
    } 
 }
 
-void ComenzarJuego()
+void ComenzarJuego(int limite)
 {
 	int OPC=0;
     	system("cls");
@@ -191,7 +191,7 @@ void ComenzarJuego()
 	           {
 	           	case 1:
 	           		system("cls");
-	           		//MostrarCarton();
+	           		MostrarCarton(limite);
 	           	break;
 	           	case 2:
 	           		//FUNCION CARGAR BOLILLAS
