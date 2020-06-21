@@ -458,3 +458,22 @@ void GenerarCartonMaquina(int estado,int limite)
 	}
     
 }
+
+void Escribir(int punt,int dni,char nomb[10],char ape[10])
+{
+	FILE *archivo = fopen("Puntajes.ear","a");
+	if(archivo == NULL)
+	{
+		perror("error abriendo el archivo");
+		
+	}
+	else
+	{
+		fprintf(archivo,"%d ",dni);
+		fprintf(archivo,"%s ",nomb);
+		fprintf(archivo,"%s ",ape);
+		fprintf(archivo,"%d ",punt);
+			fputc('\n',archivo);
+		}
+	fclose(archivo);
+}
