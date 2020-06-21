@@ -109,68 +109,136 @@ void MenuPrincipal(int estado,int limite)
     }
 }
 
-///Recibe la cantidad de cartones en juego para saber cuantos tiene que mostrar
-void MostrarCarton(int cantidad)
+///Recibe la cantidad de cartones en juego para saber cuantos tiene que mostrar la opcion representa 1 para jugador 2 para maquina
+void MostrarCarton(int cantidad,int opcion)
 {
+	
 	int C = 0;
 	int F = 0;
-	printf("\n*********************************************");
-	printf("\n*************** Cartones ********************");
-	printf("\n*********************************************");
-		printf(" \n");
-		printf(" \n");	          
-
-   switch(cantidad)
-   {
-   	case 1:
-   		//Muestro carton 1
-   		printf("ejemplo 1");
-   		break;
-   	case 2:
-   		// Muestro carton 1 y 2
-   		printf("ejemplo 2");
-   		break;
-   	case 3:
-   		// Muestro carton 1,2,3
-   		for(C=0;C<3;C++)
+		if(opcion == 1)
 		{
-			for(F=0;F<5;F++)
-			{
-
-					printf(" %d ",carton1[F][C]);
-
-			}
-			printf(" \n");
-
+				printf("\n*********************************************");
+				printf("\n*************** Cartones ********************");
+				printf("\n*********************************************");
+					printf(" \n");
+					printf(" \n");	          
+			
+			   switch(cantidad)
+			   {
+			   	case 1:
+			   		//Muestro carton 1
+			   		printf("ejemplo 1");
+			   		break;
+			   	case 2:
+			   		// Muestro carton 1 y 2
+			   		printf("ejemplo 2");
+			   		break;
+			   	case 3:
+			   		// Muestro carton 1,2,3
+			   		for(C=0;C<3;C++)
+					{
+						for(F=0;F<5;F++)
+						{
+			
+								printf(" %d ",carton1[F][C]);
+			
+						}
+						printf(" \n");
+			
+					}
+					printf(" \n");
+					printf(" \n");
+					for(C=0;C<3;C++)
+					{
+						for(F=0;F<5;F++)
+						{
+			
+								printf(" %d ",carton2[F][C]);
+			
+						}
+						printf(" \n");
+			
+					}
+					printf(" \n");
+					printf(" \n");
+					for(C=0;C<3;C++)
+					{
+						for(F=0;F<5;F++)
+						{
+			
+								printf(" %d ",carton3[F][C]);
+			
+						}
+						printf(" \n");
+			
+					}
+			   		break;
+			   } 
 		}
-		printf(" \n");
-		printf(" \n");
-		for(C=0;C<3;C++)
+		else
 		{
-			for(F=0;F<5;F++)
+			if(opcion == 2)
 			{
-
-					printf(" %d ",carton2[F][C]);
-
+				printf("\n*********************************************");
+				printf("\n*************** Maquina ********************");
+				printf("\n*********************************************");
+					printf(" \n");
+					printf(" \n");	          
+			
+			   switch(cantidad)
+			   {
+			   	case 1:
+			   		//Muestro carton 1
+			   		printf("ejemplo 1");
+			   		break;
+			   	case 2:
+			   		// Muestro carton 1 y 2
+			   		printf("ejemplo 2");
+			   		break;
+			   	case 3:
+			   		// Muestro carton 1,2,3
+			   		for(C=0;C<3;C++)
+					{
+						for(F=0;F<5;F++)
+						{
+			
+								printf(" %d ",maquina1[F][C]);
+			
+						}
+						printf(" \n");
+			
+					}
+					printf(" \n");
+					printf(" \n");
+					for(C=0;C<3;C++)
+					{
+						for(F=0;F<5;F++)
+						{
+			
+								printf(" %d ",maquina2[F][C]);
+			
+						}
+						printf(" \n");
+			
+					}
+					printf(" \n");
+					printf(" \n");
+					for(C=0;C<3;C++)
+					{
+						for(F=0;F<5;F++)
+						{
+			
+								printf(" %d ",maquina3[F][C]);
+			
+						}
+						printf(" \n");
+			
+					}
+			   		break;
+			   } 	
 			}
-			printf(" \n");
-
 		}
-		printf(" \n");
-		printf(" \n");
-		for(C=0;C<3;C++)
-		{
-			for(F=0;F<5;F++)
-			{
 
-					printf(" %d ",carton3[F][C]);
-
-			}
-			printf(" \n");
-
-		}
-   		break;
-   } 
 }
 
 void ComenzarJuego(int limite)
@@ -183,18 +251,18 @@ void ComenzarJuego(int limite)
 	           printf("\n******** Bienvenido elija acciones **********");
 	           printf("\n*********************************************");
 	           printf("\n****** -1- Mostrar cartones *****************");
-	           printf("\n****** -2- Sacar Bolila *********************");
-	           printf("\n********* -3- Salir  ************************");
+	           printf("\n****** -2- Mostrar cartones maquina *********");
+	           printf("\n****** -3- Sacar bolilla ********************");
 	           printf("\n*********************************************");
 	           scanf("%d",&OPC);
 	           switch(OPC)
 	           {
 	           	case 1:
 	           		system("cls");
-	           		MostrarCarton(limite);
+	           		MostrarCarton(limite,1);
 	           	break;
 	           	case 2:
-	           		//FUNCION CARGAR BOLILLAS
+	           		GenerarCartonMaquina(0,limite);	           	
 	        	break;
 	        	case 3:	        		
 	        		break;
@@ -339,4 +407,54 @@ void Vaciar(int Vec[91])
 			Vec[I] = 0; // vaciado para dejar numeros como disponibles
 		}
 	}
+}
+void GenerarCartonMaquina(int estado,int limite)
+{	
+	
+	system("cls");
+	if(maquinajugo == 0)
+	{
+			if (estado < limite)    {
+	
+	        switch(estado)
+	         {
+	            case 0:
+	            Aleatorio(maquina1,Disp);
+	            Vaciar(Disp);
+	            estado++;
+	            GenerarCartonMaquina(estado,limite);
+	            break;
+				case 1:
+	            Aleatorio(maquina2,Disp);
+	            Vaciar(Disp);
+	            estado++;
+	            GenerarCartonMaquina(estado,limite);
+	            break;
+				case 2:
+	            Aleatorio(maquina3,Disp);
+	            Vaciar(Disp);
+	            estado++;
+	            GenerarCartonMaquina(estado,limite);
+	            break;                                   
+	            default:
+	                system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n******** Error inesperado ***************************");
+	                printf("\n*****************************************************");
+	                printf("\n");
+	            break; 
+			}
+	       
+	    }
+	    else
+	    {	
+	    	maquinajugo = 1;
+	        MostrarCarton(limite,2);
+	    }	
+	}
+	else
+	{
+		MostrarCarton(limite,2);
+	}
+    
 }
