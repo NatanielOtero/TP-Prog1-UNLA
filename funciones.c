@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <windows.h>
 #include "funciones.h"
 
 
