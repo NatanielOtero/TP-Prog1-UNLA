@@ -288,25 +288,127 @@ void MostrarCarton(int cantidad,int opcion)
 			   {
 			   	case 1:
 			   		//Muestro carton 1
-			   		printf("ejemplo 1");
+			   		for(C=0;C<3;C++)
+						{
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[maquina1[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",maquina1[F][C]);
+								}else if(bolilla[maquina1[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",maquina1[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
+						}
 			   		break;
 			   	case 2:
 			   		// Muestro carton 1 y 2
-			   		printf("ejemplo 2");
+			   		for(C=0;C<3;C++){
+					   
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[maquina1[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",maquina1[F][C]);
+								}else if(bolilla[maquina2[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",maquina1[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf("\n");
+						}
+							printf(" \n\n");
+						
+						for(C=0;C<3;C++)
+						{
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[maquina2[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",maquina2[F][C]);
+								}else if(bolilla[maquina2[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",maquina2[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
+						}
 			   		break;
 			   	case 3:
 			   		// Muestro carton 1,2,3
-			   		for(C=0;C<3;C++)
-					{
-						for(F=0;F<5;F++)
-						{
-			
-								printf(" %d ",maquina1[F][C]);
-			
+			   		
+					   for(C=0;C<3;C++)
+					   {
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[maquina1[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",maquina1[F][C]);
+								}else if(bolilla[maquina1[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",maquina1[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
 						}
-						printf(" \n");
-			
-					}
+					printf(" \n\n");
+					
+					for(C=0;C<3;C++)
+					   {
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[maquina2[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",maquina2[F][C]);
+								}else if(bolilla[maquina2[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",maquina2[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
+						}
+						printf("\n\n");
+						for(C=0;C<3;C++)
+						{
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[maquina3[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",maquina3[F][C]);
+								}else if(bolilla[maquina3[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",maquina3[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
+						}
+						break;
 					printf(" \n");
 					printf(" \n");
 					for(C=0;C<3;C++)
