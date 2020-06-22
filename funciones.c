@@ -15,6 +15,17 @@ int Disp[91];
 int bolilla[91];
 int numero;
 int maquinajugo = 0;
+char nombreJugador[8];
+char apellidoJugador[8];
+int dniJugador; 
+
+#include <stdio.h>
+#include <conio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <windows.h>
+#include "funciones.h"
+
 
 void MenuPrincipal(int estado,int limite)
 {
@@ -115,7 +126,9 @@ void MenuPrincipal(int estado,int limite)
     }
     else
     {
+    	GenerarCartonMaquina(0,limite);
         ComenzarJuego(limite);
+        
     }
 }
 
@@ -250,7 +263,6 @@ void MostrarCarton(int cantidad,int opcion)
 		}
 
 }
-
 void ComenzarJuego(int limite)
 {
 	int OPC=0;
@@ -272,7 +284,8 @@ void ComenzarJuego(int limite)
 	           		MostrarCarton(limite,1);
 	           	break;
 	           	case 2:
-	           		GenerarCartonMaquina(0,limite);	           	
+	           		system("cls");
+	           		MostrarCarton(limite,2);  	
 	        	break;
 	        	case 3:	        		
 	        		break;
@@ -422,9 +435,8 @@ void GenerarCartonMaquina(int estado,int limite)
 {	
 	
 	system("cls");
-	if(maquinajugo == 0)
-	{
-			if (estado < limite)    {
+	
+	if (estado < limite){
 	
 	        switch(estado)
 	         {
@@ -455,17 +467,61 @@ void GenerarCartonMaquina(int estado,int limite)
 	            break; 
 			}
 	       
-	    }
-	    else
-	    {	
-	    	maquinajugo = 1;
-	        MostrarCarton(limite,2);
-	    }	
+	   
 	}
-	else
+	/*else
 	{
 		MostrarCarton(limite,2);
+	}*/
+    
+}
+void RegistrarJugador()
+{
+	int cantidadCartones = 0;
+	printf("\n*****************************************************");
+	printf("\n************ Ingrese su nombre **********************");
+	printf("\n*****************************************************");
+	printf("\n");
+	scanf("%s",nombreJugador);
+	system("cls");
+	fflush(stdin);
+	printf("\n*****************************************************");
+	printf("\n************ Ingrese su apellido **********************");
+	printf("\n*****************************************************");
+	printf("\n");
+	scanf("%s",apellidoJugador);
+	system("cls");
+	fflush(stdin);
+	printf("\n*****************************************************");
+	printf("\n************ Ingrese su DNI *************************");
+	printf("\n*****************************************************");
+	printf("\n");
+	scanf("%d",&dniJugador);
+	
+	while(dniJugador < 10000000 || dniJugador > 99999999)
+	{
+		 			system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n********* DNI invalido intente nuevamente ***********");
+	                printf("\n*****************************************************");
+	                printf("\n");
+	                scanf("%d",&dniJugador);
 	}
+	system("cls");
+	printf("Jugador: %s , %s , DNI: %d",nombreJugador,apellidoJugador,dniJugador);
+
+
+    int estado=0;// variable de estado cargados 0 ninguno cargado 1 2 y 3 seria la cantida de cartones cargados
+    // cargar en orden ejemplo si el estado es 0 no hay ninguno cargado
+    // si el estado es 1 se cargo el carton 1 y el 2 y 3 estan vacios y asi sucesivamente;
+
+   
+    
+    cantidadCartones = CantidadCartones();
+    if(cantidadCartones != 0)
+    {
+        MenuPrincipal(estado,cantidadCartones);
+    }
     
 }
 

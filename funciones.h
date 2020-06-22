@@ -10,5 +10,6 @@ void ComenzarJuego(int limite);
 void Aleatorio(int Cart[5][3],int disp[91]);
 void Vaciar(int Vec[91]); // mas seguro que asignar Vec[91] = {0};
 void CargarCarton();
+void RegistrarJugador();
 void GenerarCartonMaquina(int estado,int limite);
 #endif // FUNCIONES_H_INCLUDED
