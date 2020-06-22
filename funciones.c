@@ -3,8 +3,18 @@
 #include <time.h>
 #include <stdlib.h>
 #include <windows.h>
+#include <string.h>
 #include "funciones.h"
-
+int carton1[5][3];
+int carton2[5][3];
+int carton3[5][3];
+int maquina1[5][3];
+int maquina2[5][3];
+int maquina3[5][3];
+int Disp[91];
+int bolilla[91];
+int numero;
+int maquinajugo = 0;
 
 void MenuPrincipal(int estado,int limite)
 {
@@ -105,9 +115,7 @@ void MenuPrincipal(int estado,int limite)
     }
     else
     {
-    	GenerarCartonMaquina(0,limite);
         ComenzarJuego(limite);
-        
     }
 }
 
@@ -264,8 +272,7 @@ void ComenzarJuego(int limite)
 	           		MostrarCarton(limite,1);
 	           	break;
 	           	case 2:
-	           		system("cls");
-	           		MostrarCarton(limite,2);  	
+	           		GenerarCartonMaquina(0,limite);	           	
 	        	break;
 	        	case 3:	        		
 	        		break;
@@ -415,8 +422,9 @@ void GenerarCartonMaquina(int estado,int limite)
 {	
 	
 	system("cls");
-	
-	if (estado < limite){
+	if(maquinajugo == 0)
+	{
+			if (estado < limite)    {
 	
 	        switch(estado)
 	         {
@@ -447,63 +455,20 @@ void GenerarCartonMaquina(int estado,int limite)
 	            break; 
 			}
 	       
-	   
+	    }
+	    else
+	    {	
+	    	maquinajugo = 1;
+	        MostrarCarton(limite,2);
+	    }	
 	}
-	/*else
+	else
 	{
 		MostrarCarton(limite,2);
-	}*/
-    
-}
-void RegistrarJugador()
-{
-	int cantidadCartones = 0;
-	printf("\n*****************************************************");
-	printf("\n************ Ingrese su nombre **********************");
-	printf("\n*****************************************************");
-	printf("\n");
-	scanf("%s",nombreJugador);
-	system("cls");
-	fflush(stdin);
-	printf("\n*****************************************************");
-	printf("\n************ Ingrese su apellido **********************");
-	printf("\n*****************************************************");
-	printf("\n");
-	scanf("%s",apellidoJugador);
-	system("cls");
-	fflush(stdin);
-	printf("\n*****************************************************");
-	printf("\n************ Ingrese su DNI *************************");
-	printf("\n*****************************************************");
-	printf("\n");
-	scanf("%d",&dniJugador);
-	
-	while(dniJugador < 10000000 || dniJugador > 99999999)
-	{
-		 			system("cls");
-	                printf("\n*****************************************************");
-	                printf("\n********* DNI invalido intente nuevamente ***********");
-	                printf("\n*****************************************************");
-	                printf("\n");
-	                scanf("%d",&dniJugador);
 	}
-	system("cls");
-	printf("Jugador: %s , %s , DNI: %d",nombreJugador,apellidoJugador,dniJugador);
-
-
-    int estado=0;// variable de estado cargados 0 ninguno cargado 1 2 y 3 seria la cantida de cartones cargados
-    // cargar en orden ejemplo si el estado es 0 no hay ninguno cargado
-    // si el estado es 1 se cargo el carton 1 y el 2 y 3 estan vacios y asi sucesivamente;
-
-   
-    
-    cantidadCartones = CantidadCartones();
-    if(cantidadCartones != 0)
-    {
-        MenuPrincipal(estado,cantidadCartones);
-    }
     
 }
+
 void Escribir(int punt,int dni,char nomb[10],char ape[10])
 {
 	FILE *archivo = fopen("Puntajes.ear","a");
@@ -520,5 +485,43 @@ void Escribir(int punt,int dni,char nomb[10],char ape[10])
 		fprintf(archivo,"%d ",punt);
 			fputc('\n',archivo);
 		}
+	fclose(archivo);
+}
+
+void leer()
+{
+	FILE *archivo = fopen("Puntajes.ear","r");
+	if(archivo == NULL)
+	{
+		perror("error abriendo el archivo");
+	}
+	int c;
+	int puntaje;
+	int Y;
+	int Restar=0;
+	int DNI;
+	char Nombre[8];
+	char Apellido[8];
+	printf("*****************************************************\n");
+	printf("**************** <Mejores Puntajes> *****************\n");
+	printf("*****************************************************\n");
+	printf("*    DNI   ** Puntaje **** Nombre y Apellido ********\n");
+	printf("*****************************************************\n");
+	//while (feof(archivo) == 0)
+	while((c=fgetc(archivo)) != EOF)
+	{
+		
+		fscanf(archivo,"%d %s %s %d",&DNI,&Nombre,&Apellido,&puntaje);
+		printf("* %1d **%4d     **** %s %s ",DNI,puntaje,Nombre,Apellido);
+		
+		Restar = (strlen(Nombre)+strlen(Apellido));
+		for(Y=0;Y<(16-Restar);Y++)
+		{
+			printf(" ");
+		}
+			printf("********");
+		printf("\n");
+	}
+	printf("*****************************************************\n");
 	fclose(archivo);
 }
