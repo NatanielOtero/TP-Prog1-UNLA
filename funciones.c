@@ -3,16 +3,31 @@
 #include <time.h>
 #include <stdlib.h>
 #include <windows.h>
+#include <string.h>
 #include "funciones.h"
-
+int carton1[5][3];
+int carton2[5][3];
+int carton3[5][3];
+int maquina1[5][3];
+int maquina2[5][3];
+int maquina3[5][3];
+int Disp[91];
+int bolilla[91];
+int numero;
+int maquinajugo = 0;
+char nombreJugador[8];
+char apellidoJugador[8];
+int dniJugador; 
 
 void MenuPrincipal(int estado,int limite)
 {
+	Vaciar(bolilla);
     system("cls");
     if (estado <limite)
     {
     int op;
       do{
+      		GenerarCartonMaquina(0,limite);
       	   printf("\n*********************************************");
            printf("\n** Elija como quiere cargar el carton n%c %d ***",167,estado+1);
            printf("\n*********************************************");
@@ -112,7 +127,8 @@ void MenuPrincipal(int estado,int limite)
 ///Recibe la cantidad de cartones en juego para saber cuantos tiene que mostrar la opcion representa 1 para jugador 2 para maquina
 void MostrarCarton(int cantidad,int opcion)
 {
-	
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int C = 0;
 	int F = 0;
 		if(opcion == 1)
@@ -126,52 +142,135 @@ void MostrarCarton(int cantidad,int opcion)
 			   switch(cantidad)
 			   {
 			   	case 1:
-			   		//Muestro carton 1
-			   		printf("ejemplo 1");
+				   		for(C=0;C<3;C++)
+						{
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[carton1[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",carton1[F][C]);
+								}else if(bolilla[carton1[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",carton1[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
+				
+						}
+						
+						printf(" \n");
+				
 			   		break;
 			   	case 2:
 			   		// Muestro carton 1 y 2
-			   		printf("ejemplo 2");
+			   		for(C=0;C<3;C++)
+					{
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[carton1[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",carton1[F][C]);
+								}else if(bolilla[carton1[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",carton1[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+						printf(" \n");
+					}
+					SetConsoleTextAttribute (hConsole,15);
+					printf(" \n");
+					printf(" \n");
+					for(C=0;C<3;C++)
+						{
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[carton2[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",carton2[F][C]);
+								}else if(bolilla[carton2[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",carton2[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
+						}
+						SetConsoleTextAttribute (hConsole,15);
 			   		break;
 			   	case 3:
 			   		// Muestro carton 1,2,3
-			   		for(C=0;C<3;C++)
-					{
-						for(F=0;F<5;F++)
+					for(C=0;C<3;C++)
 						{
-			
-								printf(" %d ",carton1[F][C]);
-			
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[carton1[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",carton1[F][C]);
+								}else if(bolilla[carton1[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",carton1[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
 						}
-						printf(" \n");
-			
-					}
+					SetConsoleTextAttribute (hConsole,15);
 					printf(" \n");
 					printf(" \n");
 					for(C=0;C<3;C++)
-					{
-						for(F=0;F<5;F++)
 						{
-			
-								printf(" %d ",carton2[F][C]);
-			
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[carton2[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",carton2[F][C]);
+								}else if(bolilla[carton2[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",carton2[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
 						}
-						printf(" \n");
-			
-					}
+					SetConsoleTextAttribute (hConsole,15);
 					printf(" \n");
 					printf(" \n");
 					for(C=0;C<3;C++)
-					{
-						for(F=0;F<5;F++)
 						{
-			
-								printf(" %d ",carton3[F][C]);
-			
+							SetConsoleTextAttribute (hConsole,15);
+							for(F=0;F<5;F++)
+							{
+								if(bolilla[carton3[F][C]] == -1)
+								{
+									SetConsoleTextAttribute (hConsole,10);
+									printf(" %2d ",carton3[F][C]);
+								}else if(bolilla[carton3[F][C]] == 0)
+								{
+									SetConsoleTextAttribute (hConsole,4);
+									printf(" %2d ",carton3[F][C]);
+								}
+								SetConsoleTextAttribute (hConsole,15);
+							}
+							printf(" \n");
 						}
-						printf(" \n");
-			
-					}
+					SetConsoleTextAttribute (hConsole,15);
 			   		break;
 			   } 
 		}
@@ -240,7 +339,6 @@ void MostrarCarton(int cantidad,int opcion)
 		}
 
 }
-
 void ComenzarJuego(int limite)
 {
 	int OPC=0;
@@ -253,7 +351,7 @@ void ComenzarJuego(int limite)
 	           printf("\n****** -1- Mostrar cartones *****************");
 	           printf("\n****** -2- Mostrar cartones maquina *********");
 	           printf("\n****** -3- Sacar bolilla ********************");
-	           printf("\n*********************************************");
+	           printf("\n*********************************************\n");
 	           scanf("%d",&OPC);
 	           switch(OPC)
 	           {
@@ -262,9 +360,22 @@ void ComenzarJuego(int limite)
 	           		MostrarCarton(limite,1);
 	           	break;
 	           	case 2:
-	           		GenerarCartonMaquina(0,limite);	           	
+	           		MostrarCarton(limite,2);           	
 	        	break;
-	        	case 3:	        		
+	        	case 3:
+	        		system("cls");
+		    	    printf("*********************************************\n");
+		            printf("**** Acaba de Salir el Numero --->%2d<---****\n",Sacar(bolilla));
+		            printf("*********************************************\n");
+	        		system("pause");
+	        		system("cls");
+	        		MostrarCarton(limite,1);
+	        		system("pause");
+	        		system("cls");
+	        		MostrarCarton(limite,2);
+	        		system("pause");
+	        		system("cls");
+	        		ComenzarJuego(limite);
 	        		break;
 	        	default:
 	        	    system("cls");
@@ -412,9 +523,8 @@ void GenerarCartonMaquina(int estado,int limite)
 {	
 	
 	system("cls");
-	if(maquinajugo == 0)
-	{
-			if (estado < limite)    {
+	
+	if (estado < limite){
 	
 	        switch(estado)
 	         {
@@ -445,17 +555,61 @@ void GenerarCartonMaquina(int estado,int limite)
 	            break; 
 			}
 	       
-	    }
-	    else
-	    {	
-	    	maquinajugo = 1;
-	        MostrarCarton(limite,2);
-	    }	
+	   
 	}
-	else
+	/*else
 	{
 		MostrarCarton(limite,2);
+	}*/
+    
+}
+void RegistrarJugador()
+{
+	int cantidadCartones = 0;
+	printf("\n*****************************************************");
+	printf("\n************ Ingrese su nombre **********************");
+	printf("\n*****************************************************");
+	printf("\n");
+	scanf("%s",nombreJugador);
+	system("cls");
+	fflush(stdin);
+	printf("\n*****************************************************");
+	printf("\n************ Ingrese su apellido **********************");
+	printf("\n*****************************************************");
+	printf("\n");
+	scanf("%s",apellidoJugador);
+	system("cls");
+	fflush(stdin);
+	printf("\n*****************************************************");
+	printf("\n************ Ingrese su DNI *************************");
+	printf("\n*****************************************************");
+	printf("\n");
+	scanf("%d",&dniJugador);
+	
+	while(dniJugador < 10000000 || dniJugador > 99999999)
+	{
+		 			system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n********* DNI invalido intente nuevamente ***********");
+	                printf("\n*****************************************************");
+	                printf("\n");
+	                scanf("%d",&dniJugador);
 	}
+	system("cls");
+	printf("Jugador: %s , %s , DNI: %d",nombreJugador,apellidoJugador,dniJugador);
+
+
+    int estado=0;// variable de estado cargados 0 ninguno cargado 1 2 y 3 seria la cantida de cartones cargados
+    // cargar en orden ejemplo si el estado es 0 no hay ninguno cargado
+    // si el estado es 1 se cargo el carton 1 y el 2 y 3 estan vacios y asi sucesivamente;
+
+   
+    
+    cantidadCartones = CantidadCartones();
+    if(cantidadCartones != 0)
+    {
+        MenuPrincipal(estado,cantidadCartones);
+    }
     
 }
 
@@ -476,4 +630,55 @@ void Escribir(int punt,int dni,char nomb[10],char ape[10])
 			fputc('\n',archivo);
 		}
 	fclose(archivo);
+}
+
+void Leer()
+{
+	FILE *archivo = fopen("Puntajes.ear","r");
+	if(archivo == NULL)
+	{
+		perror("error abriendo el archivo");
+	}
+	int c;
+	int puntaje;
+	int Y;
+	int Restar=0;
+	int DNI;
+	char Nombre[8];
+	char Apellido[8];
+	printf("*****************************************************\n");
+	printf("**************** <Mejores Puntajes> *****************\n");
+	printf("*****************************************************\n");
+	printf("*    DNI   ** Puntaje **** Nombre y Apellido ********\n");
+	printf("*****************************************************\n");
+	//while (feof(archivo) == 0)
+	while((c=fgetc(archivo)) != EOF)
+	{
+		
+		fscanf(archivo,"%d %s %s %d",&DNI,&Nombre,&Apellido,&puntaje);
+		printf("* %1d **%4d     **** %s %s ",DNI,puntaje,Nombre,Apellido);
+		
+		Restar = (strlen(Nombre)+strlen(Apellido));
+		for(Y=0;Y<(16-Restar);Y++)
+		{
+			printf(" ");
+		}
+			printf("********");
+		printf("\n");
+	}
+	printf("*****************************************************\n");
+	fclose(archivo);
+}
+int Sacar(int Bolita[91])
+{
+	int numero=0;
+	while(Bolita[numero] != 0)
+	{
+		numero=rand()%91;
+	}
+			if(Bolita[numero] == 0)
+			{
+				Bolita[numero] = -1;
+			}
+	return numero;
 }
