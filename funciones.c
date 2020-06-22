@@ -17,7 +17,7 @@ int numero;
 int maquinajugo = 0;
 char nombreJugador[8];
 char apellidoJugador[8];
-int dniJugador; 
+int dniJugador;
 
 void MenuPrincipal(int estado,int limite)
 {
@@ -29,7 +29,7 @@ void MenuPrincipal(int estado,int limite)
       do{
       		GenerarCartonMaquina(0,limite);
       	   printf("\n*********************************************");
-           printf("\n** Elija como quiere cargar el carton n%c %d ***",167,estado+1);
+           printf("\n** Elija como quiere cargar el carton n%c %d **",167,estado+1);
            printf("\n*********************************************");
            printf("\n****** -1- Carton personalizado *************");
            printf("\n****** -2- Carton Aleatorio *****************");
@@ -279,7 +279,7 @@ void MostrarCarton(int cantidad,int opcion)
 			if(opcion == 2)
 			{
 				printf("\n*********************************************");
-				printf("\n*************** Maquina ********************");
+				printf("\n**************** Maquina ********************");
 				printf("\n*********************************************");
 					printf(" \n");
 					printf(" \n");	          
@@ -441,6 +441,7 @@ void MostrarCarton(int cantidad,int opcion)
 		}
 
 }
+
 void ComenzarJuego(int limite)
 {
 	int OPC=0;
@@ -462,12 +463,13 @@ void ComenzarJuego(int limite)
 	           		MostrarCarton(limite,1);
 	           	break;
 	           	case 2:
+	           		system("cls");
 	           		MostrarCarton(limite,2);           	
 	        	break;
 	        	case 3:
 	        		system("cls");
 		    	    printf("*********************************************\n");
-		            printf("**** Acaba de Salir el Numero --->%2d<---****\n",Sacar(bolilla));
+		            printf("**** Acaba de Salir el Numero --->%2d<--- ****\n",Sacar(bolilla));
 		            printf("*********************************************\n");
 	        		system("pause");
 	        		system("cls");
@@ -606,6 +608,7 @@ void Aleatorio(int Cart[5][3],int disp[91])
 	}
 	//getch();
 }
+
 void Vaciar(int Vec[91])
 {
 	int I=0;
@@ -621,6 +624,7 @@ void Vaciar(int Vec[91])
 		}
 	}
 }
+
 void GenerarCartonMaquina(int estado,int limite)
 {	
 	
@@ -665,6 +669,8 @@ void GenerarCartonMaquina(int estado,int limite)
 	}*/
     
 }
+
+
 void RegistrarJugador()
 {
 	int cantidadCartones = 0;
@@ -676,7 +682,7 @@ void RegistrarJugador()
 	system("cls");
 	fflush(stdin);
 	printf("\n*****************************************************");
-	printf("\n************ Ingrese su apellido **********************");
+	printf("\n************ Ingrese su apellido ********************");
 	printf("\n*****************************************************");
 	printf("\n");
 	scanf("%s",apellidoJugador);
@@ -771,6 +777,7 @@ void Leer()
 	printf("*****************************************************\n");
 	fclose(archivo);
 }
+
 int Sacar(int Bolita[91])
 {
 	int numero=0;
