@@ -13,7 +13,11 @@ int numero;*/
 int main()
 {
     srand(time(NULL));
-    int cantidadCartones = 0;
+    printf("\n*****************************************************");
+    printf("\n************** Bienvenido al Bingo ******************");
+    printf("\n-----------------------------------------------------");
+    RegistrarJugador();
+    /*int cantidadCartones = 0;
 
 
 
@@ -28,6 +32,6 @@ int main()
     if(cantidadCartones != 0)
     {
         MenuPrincipal(estado,cantidadCartones);
-    }
+    }*/
     return 0;
 }
