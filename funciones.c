@@ -19,14 +19,6 @@ char nombreJugador[8];
 char apellidoJugador[8];
 int dniJugador; 
 
-#include <stdio.h>
-#include <conio.h>
-#include <time.h>
-#include <stdlib.h>
-#include <windows.h>
-#include "funciones.h"
-
-
 void MenuPrincipal(int estado,int limite)
 {
     system("cls");
