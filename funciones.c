@@ -536,7 +536,7 @@ void Escribir(int punt,int dni,char nomb[10],char ape[10])
 	fclose(archivo);
 }
 
-void leer()
+void Leer()
 {
 	FILE *archivo = fopen("Puntajes.ear","r");
 	if(archivo == NULL)

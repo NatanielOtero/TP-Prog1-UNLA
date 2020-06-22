@@ -12,4 +12,7 @@ void Vaciar(int Vec[91]); // mas seguro que asignar Vec[91] = {0};
 void CargarCarton();
 void RegistrarJugador();
 void GenerarCartonMaquina(int estado,int limite);
+void Escribir(int punt,int dni,char nomb[10],char ape[10]);
+void Leer();
+
 #endif // FUNCIONES_H_INCLUDED
