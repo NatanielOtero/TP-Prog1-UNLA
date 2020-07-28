@@ -6,21 +6,6 @@
 #include <string.h>
 #include "funciones.h"
  
-void Vaciar(int Vec[91])
-{
-	int I=0;
-	for(I=0;I<91;I++)
-	{
-		if(I == 0)
-		{
-			Vec[I] = -1; // el numero 0 no se utiliza en el bingo
-		}
-		else
-		{
-			Vec[I] = 0; // vaciado para dejar numeros como disponibles
-		}
-	}
-}
 
 void RegistrarJugador(char nombreJugador[8],char apellidoJugador[8], int dniJugador)
 {
