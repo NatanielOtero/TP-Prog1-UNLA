@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <string.h>
 #include "funciones.h"
+#define TESTING 1 // 1 (MODO DESAROLLADOR HABILITADO) - ? (MODO DESAROLLADOR DESABILITADO)
 struct DatosJugador
 {
 	char Nombre[8];
@@ -20,20 +21,69 @@ struct DatosJugador Jugador;
 	
 	int cantidadCartones;	
 	int Bolillas[91];
+	int NumActual =0;
+	int TEST = 0;
 	vaciar(Bolillas);
 	
     srand(time(NULL));   
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute (hConsole,7);
+
+	
+	if(TESTING == 1)
+    {
+    printf("\n*****************************************************");
+    printf("\n*--------- PROGRAMA EN FASE DE TESTEO --------------*");
+    printf("\n*---------------------------------------------------*");
+    printf("\n*---------------------------------------------------*");
+    printf("\n*--------- ELIJA ENTRE PRUEBA ");
+    SetConsoleTextAttribute (hConsole,4);
+	printf("PROGRAMADOR");
+	SetConsoleTextAttribute (hConsole,7);
+	printf(" (1)-------*");
+    printf("\n*--------- ELIJA ENTRE PRUEBA ");
+    SetConsoleTextAttribute (hConsole,6);
+	printf("USUARIO FINAL");
+	SetConsoleTextAttribute (hConsole,7);
+	printf(" (2)-----*");
+	printf("\n*****************************************************");
+    SetConsoleTextAttribute (hConsole,4);
+    printf("\n\n\n");
+	printf("\n*****************************************************");
+	printf("\n****************** ADVERTENCIA **********************");
+	printf("\n*****************************************************");
+    printf("\n*SI USTED VE ESTE MENSAJE NO PRESIONE NADA FUERA DE *");
+    printf("\n*---------- LOS PARAMETROS ESTABLECIDOS ------------*");
+    printf("\n*---------- RUPTURA DEL PROGRAMA SEGURA ------------*");
+    printf("\n*****************************************************");
+    SetConsoleTextAttribute (hConsole,7);
+    printf("\n\n\n");
+	SetConsoleTextAttribute (hConsole,4);
+	printf("------->>> ");
+	SetConsoleTextAttribute (hConsole,7);
+    scanf("%d",&TEST);
+    system("cls");
+	}
+	if(TESTING != 1)
+	{
+		TEST = 2;
+	}
+	
+	if(TEST == 2)
+    {
 	printf("\n*****************************************************");
     printf("\n************** Bienvenido al Bingo ******************");
     printf("\n-----------------------------------------------------");
-    
+	}
+    if(TEST == 2)
+    {
     Jugador.Dni = RegistrarJugador(Jugador.Nombre,Jugador.Apellido);
 	SetConsoleTextAttribute (hConsole,6);
 	printf("Jugador: %s , %s , DNI: %d \n",Jugador.Nombre,Jugador.Apellido,Jugador.Dni);
 	SetConsoleTextAttribute (hConsole,7);
+	}
+	
     cantidadCartones = CantidadCartones();    
     if(cantidadCartones != 0)
     {
@@ -46,6 +96,8 @@ struct DatosJugador Jugador;
 		    int op;
 		      do{
 		      	system("cls");
+		      	    if(TEST == 2)
+    				{
 		      	   printf("\n*********************************************");
 		           printf("\n** Elija como quiere cargar el carton n%c %d **",167,i+1);
 		           printf("\n*********************************************");
@@ -58,6 +110,11 @@ struct DatosJugador Jugador;
 				   printf("------->>> ");
 				   SetConsoleTextAttribute (hConsole,7);
 		           scanf("%d",&op);
+		       		}
+		       		if(TEST == 1)
+		       		{
+		       			op = 2;
+					}
 		           switch(op)
 		           {
 		
@@ -118,7 +175,7 @@ struct DatosJugador Jugador;
 						printf("\n*************** Cartones Jugador ************");
 						printf("\n*********************************************");
 						printf("\n");
-						MostrarCarton(cartonJugador,cantidadCartones,Bolillas);
+						MostrarCarton(cartonJugador,cantidadCartones,Bolillas,-98);
 						getch();
 	           	break;
 	           	case 2:
@@ -127,13 +184,14 @@ struct DatosJugador Jugador;
 						printf("\n*************** Cartones Maquina ************");
 						printf("\n*********************************************");	
 						printf("\n"); 	
-						MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas);
+						MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,-98);
 						getch();
 	        	break;
 	        	case 3:
 	        		system("cls");
+	        		NumActual = Sacar(Bolillas);
 	                printf("\n*****************************************************");
-	                printf("\n******** Salio EL Numero ----> %2d *******************",Sacar(Bolillas) );
+	                printf("\n******** Salio EL Numero ----> %2d *******************",NumActual);
 	                printf("\n*****************************************************");
 	                printf("\n");
 	                getch();	  
@@ -143,7 +201,7 @@ struct DatosJugador Jugador;
 					printf("\n*************** Cartones Jugador ************");
 					printf("\n*********************************************");
 					printf("\n");
-					MostrarCarton(cartonJugador,cantidadCartones,Bolillas);
+					MostrarCarton(cartonJugador,cantidadCartones,Bolillas,NumActual);
 					getch();
 					
 		           	system("cls");
@@ -151,7 +209,7 @@ struct DatosJugador Jugador;
 					printf("\n*************** Cartones Maquina ************");
 					printf("\n*********************************************");	
 					printf("\n"); 	
-					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas);
+					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,NumActual);
 					getch();
 				break;
 				

@@ -9,7 +9,7 @@ int aleatorioEntre(int mini, int maxi);
 int buscarEnMatriz(int m[][RENGLONES][COLUMNAS],int pos, int buscar);
 void cargarMatrizAleatoria(int m[][RENGLONES][COLUMNAS],int pos);
 void cargarMatrizManual(int m[][RENGLONES][COLUMNAS],int pos);
-void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91]);
+void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],int NumActual);
 int RegistrarJugador(char nombreJugador[8],char apellidoJugador[8]);
 int CantidadCartones();
 void cartonesMaquina(int cantidad);

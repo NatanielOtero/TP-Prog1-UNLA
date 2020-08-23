@@ -112,7 +112,7 @@ void cargarMatrizAleatoria(int m[][RENGLONES][COLUMNAS],int pos){
 				{
 				
 					do{
-			        numeroNuevo = aleatorioEntre(0, 91);
+			        numeroNuevo = aleatorioEntre(0, 90);
 			        resultadoBusqueda = buscarEnMatriz(m,pos,numeroNuevo); //nos da la posicion ---> -1
 			        }while(resultadoBusqueda==0);
 			
@@ -123,7 +123,7 @@ void cargarMatrizAleatoria(int m[][RENGLONES][COLUMNAS],int pos){
            
     }
 void cargarMatrizManual(int m[][RENGLONES][COLUMNAS],int pos){
-		HANDLE hConsole;
+	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
      int numeroNuevo = 0;
@@ -176,7 +176,7 @@ int CantidadCartones()
      while(cantidad > 3 || cantidad < 1);
      return cantidad;
 }
-void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91])
+void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],int NumActual)
 {
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -187,13 +187,20 @@ void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 			{
 				for(int C=0;C<COLUMNAS;C++)
 				{
-					if(Bolitas[carton[M][F][C]] == 0)
+					if(carton[M][F][C] == NumActual)
 					{
-					SetConsoleTextAttribute (hConsole,8);	
+						SetConsoleTextAttribute (hConsole,6);
 					}
-					if(Bolitas[carton[M][F][C]] == 1)
+					else
 					{
-					SetConsoleTextAttribute (hConsole,10);
+						if(Bolitas[carton[M][F][C]] == 0)
+						{
+							SetConsoleTextAttribute (hConsole,8);
+						}
+						if(Bolitas[carton[M][F][C]] == 1)
+						{
+							SetConsoleTextAttribute (hConsole,10);
+						}
 					}
 					printf(" %2d ",carton[M][F][C]);
 					SetConsoleTextAttribute (hConsole,7);
@@ -271,7 +278,9 @@ void Leer()
 int Sacar(int Bolita[91]){
     int numero = 0;
     do{
-        numero = rand()% 91;
+        numero = rand()% 91;  // 0 - 90
+       // numero = rand()% 90 +1;  1 - 90
+       //  numero = rand()% 90;  0 - 89
 
         }while(Bolita[numero]==1);//si la bolita en la posicion numero es 1 significa que salio
         // sino salio se le asigna un 1 por primera vez
