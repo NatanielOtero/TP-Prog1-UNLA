@@ -230,5 +230,23 @@ void Leer()
 	printf("*****************************************************\n");
 	fclose(archivo);
 }
+int Sacar(int Bolita[91]){
+    int numero = 0;
+    do{
+        numero = rand()% 91;
+
+        }while(Bolita[numero]==1);//si la bolita en la posicion numero es 1 significa que salio
+        // sino salio se le asigna un 1 por primera vez
+        Bolita[numero] = 1;
+    return numero;
+}
+
+void vaciar(int Bola[91]){
+    for(int i=0;i<91;i++)
+    {
+        Bola[i] = 0;
+    }
+}
+
 
 
