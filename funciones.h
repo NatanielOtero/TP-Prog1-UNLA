@@ -15,4 +15,6 @@ int CantidadCartones();
 void cartonesMaquina(int cantidad);
 void Escribir(int punt,int dni,char nomb[10],char ape[10]);
 void Leer();
+void vaciar(int Bola[91]);
+int Sacar(int Bolita[91]);
 #endif // FUNCIONES_H_INCLUDED
