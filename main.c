@@ -5,21 +5,35 @@
 #include <windows.h>
 #include <string.h>
 #include "funciones.h"
+struct DatosJugador
+{
+	char Nombre[8];
+	char Apellido[8];
+	int Dni;
+	int Puntaje;
+};
 
 int main()
 {
-	char nombreJugador[8];
-	char apellidoJugador[8];
-	int dniJugador; 
+struct DatosJugador Jugador;
+	
+	
 	int cantidadCartones;	
+	int Bolillas[91];
+	vaciar(Bolillas);
+	
     srand(time(NULL));   
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute (hConsole,10);
+	SetConsoleTextAttribute (hConsole,7);
 	printf("\n*****************************************************");
     printf("\n************** Bienvenido al Bingo ******************");
     printf("\n-----------------------------------------------------");
-    RegistrarJugador(nombreJugador,apellidoJugador,dniJugador);     
+    
+    Jugador.Dni = RegistrarJugador(Jugador.Nombre,Jugador.Apellido);
+	SetConsoleTextAttribute (hConsole,6);
+	printf("Jugador: %s , %s , DNI: %d \n",Jugador.Nombre,Jugador.Apellido,Jugador.Dni);
+	SetConsoleTextAttribute (hConsole,7);
     cantidadCartones = CantidadCartones();    
     if(cantidadCartones != 0)
     {
@@ -31,13 +45,18 @@ int main()
         	
 		    int op;
 		      do{
+		      	system("cls");
 		      	   printf("\n*********************************************");
-		           printf("\n** Elija como quiere cargar el carton n%c %d ***",167,i+1);
+		           printf("\n** Elija como quiere cargar el carton n%c %d **",167,i+1);
 		           printf("\n*********************************************");
 		           printf("\n****** -1- Carton personalizado *************");
 		           printf("\n****** -2- Carton Aleatorio *****************");
 		           printf("\n*********************************************");
-		           printf("\nOpcion: ");
+		           //printf("\nOpcion: ");
+		           printf("\n\n\n");
+				   SetConsoleTextAttribute (hConsole,4);
+				   printf("------->>> ");
+				   SetConsoleTextAttribute (hConsole,7);
 		           scanf("%d",&op);
 		           switch(op)
 		           {
@@ -55,7 +74,9 @@ int main()
 		                printf("\n*****************************************************");
 		                printf("\n******** Opcion invalida intente de nuevo ***********");
 		                printf("\n*****************************************************");
-		                printf("\n");
+		                printf("\n\n\n");
+		                getch();
+		                system("cls");
 		            break;
 		           }
 		        }
@@ -76,15 +97,19 @@ int main()
 		int OPC;
 			system("cls");
     	       	do{
-				
-	    	   printf("\n*********************************************");
-	           printf("\n************** Bienvenido *******************");
-	           printf("\n*********************************************");
-	           printf("\n****** -1- Mostrar cartones *****************");
-	           printf("\n****** -2- Mostrar cartones maquina *********");
-	           printf("\n****** -3- Sacar bolilla ********************");
-	           printf("\n*********************************************");
-	           scanf("%d",&OPC);
+				system("cls");
+				printf("\n*********************************************");
+				printf("\n************** Bienvenido *******************");
+				printf("\n*********************************************");
+				printf("\n****** -1- Mostrar cartones *****************");
+				printf("\n****** -2- Mostrar cartones maquina *********");
+				printf("\n****** -3- Sacar bolilla ********************");
+				printf("\n*********************************************");
+	           	printf("\n\n\n");
+				SetConsoleTextAttribute (hConsole,4);
+				printf("------->>> ");
+				SetConsoleTextAttribute (hConsole,7);
+	            scanf("%d",&OPC);
 	           switch(OPC)
 	           {
 	           	case 1:
@@ -93,7 +118,8 @@ int main()
 						printf("\n*************** Cartones Jugador ************");
 						printf("\n*********************************************");
 						printf("\n");
-						MostrarCarton(cartonJugador,cantidadCartones);
+						MostrarCarton(cartonJugador,cantidadCartones,Bolillas);
+						getch();
 	           	break;
 	           	case 2:
 		           		system("cls");
@@ -101,19 +127,44 @@ int main()
 						printf("\n*************** Cartones Maquina ************");
 						printf("\n*********************************************");	
 						printf("\n"); 	
-						MostrarCarton(cartonesMaquina,cantidadCartones);
+						MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas);
+						getch();
 	        	break;
-	        	case 3:	        		
-	        		break;
+	        	case 3:
+	        		system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n******** Salio EL Numero ----> %2d *******************",Sacar(Bolillas) );
+	                printf("\n*****************************************************");
+	                printf("\n");
+	                getch();	  
+					              
+	                system("cls");
+					printf("\n*********************************************");
+					printf("\n*************** Cartones Jugador ************");
+					printf("\n*********************************************");
+					printf("\n");
+					MostrarCarton(cartonJugador,cantidadCartones,Bolillas);
+					getch();
+					
+		           	system("cls");
+		           	printf("\n*********************************************");
+					printf("\n*************** Cartones Maquina ************");
+					printf("\n*********************************************");	
+					printf("\n"); 	
+					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas);
+					getch();
+				break;
+				
 	        	default:
 	        	    system("cls");
 	                printf("\n*****************************************************");
 	                printf("\n******** Opcion invalida intente de nuevo ***********");
 	                printf("\n*****************************************************");
 	                printf("\n");
+	                getch();
 	        	break;
 			   }
-		   }while(OPC != 3);
+		   }while(OPC != 4);
 	
 	
 		   

@@ -7,20 +7,33 @@
 #include "funciones.h"
  
 
-void RegistrarJugador(char nombreJugador[8],char apellidoJugador[8], int dniJugador)
+int RegistrarJugador(char nombreJugador[8],char apellidoJugador[8])
 {
+	
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	//SetConsoleTextAttribute (hConsole,8);	
+	int  dniJugador;
 	int cantidadCartones = 0;
 	printf("\n*****************************************************");
 	printf("\n************ Ingrese su nombre **********************");
 	printf("\n*****************************************************");
 	printf("\n");
+	printf("\n");
+	SetConsoleTextAttribute (hConsole,4);
+	printf("------->>> ");
+	SetConsoleTextAttribute (hConsole,7);
 	scanf("%s",nombreJugador);
 	system("cls");
 	fflush(stdin);
 	printf("\n*****************************************************");
-	printf("\n************ Ingrese su apellido **********************");
+	printf("\n************ Ingrese su apellido ********************");
 	printf("\n*****************************************************");
 	printf("\n");
+	printf("\n");
+	SetConsoleTextAttribute (hConsole,4);
+	printf("------->>> ");
+	SetConsoleTextAttribute (hConsole,7);
 	scanf("%s",apellidoJugador);
 	system("cls");
 	fflush(stdin);
@@ -28,6 +41,10 @@ void RegistrarJugador(char nombreJugador[8],char apellidoJugador[8], int dniJuga
 	printf("\n************ Ingrese su DNI *************************");
 	printf("\n*****************************************************");
 	printf("\n");
+	printf("\n");
+	SetConsoleTextAttribute (hConsole,4);
+	printf("------->>> ");
+	SetConsoleTextAttribute (hConsole,7);
 	scanf("%d",&dniJugador);
 	
 	while(dniJugador < 10000000 || dniJugador > 99999999)
@@ -37,14 +54,14 @@ void RegistrarJugador(char nombreJugador[8],char apellidoJugador[8], int dniJuga
 	                printf("\n********* DNI invalido intente nuevamente ***********");
 	                printf("\n*****************************************************");
 	                printf("\n");
+	                printf("\n");
+					SetConsoleTextAttribute (hConsole,4);
+					printf("------->>> ");
+					SetConsoleTextAttribute (hConsole,7);
 	                scanf("%d",&dniJugador);
 	}
 	system("cls");
-	printf("Jugador: %s , %s , DNI: %d",nombreJugador,apellidoJugador,dniJugador);
-
-
-   
-    
+	return dniJugador;
 }
 
 int aleatorioEntre(int mini, int maxi){
@@ -106,6 +123,8 @@ void cargarMatrizAleatoria(int m[][RENGLONES][COLUMNAS],int pos){
            
     }
 void cargarMatrizManual(int m[][RENGLONES][COLUMNAS],int pos){
+		HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
      int numeroNuevo = 0;
      int resultadoBusqueda = 0 ;
@@ -116,6 +135,10 @@ void cargarMatrizManual(int m[][RENGLONES][COLUMNAS],int pos){
 				
 					do{
 						printf("Ingrese un numero...");
+						printf("\n");
+						SetConsoleTextAttribute (hConsole,4);
+						printf("------->>> ");
+						SetConsoleTextAttribute (hConsole,7);
 			     		scanf("%d",&numeroNuevo); 
 				        resultadoBusqueda = buscarEnMatriz(m,pos,numeroNuevo); //nos da la posicion ---> -1
 				        if(resultadoBusqueda == 0)
@@ -133,6 +156,8 @@ void cargarMatrizManual(int m[][RENGLONES][COLUMNAS],int pos){
 
 int CantidadCartones()
 {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     int cantidad = 0;
     do{
      printf("\n*****************************************************");
@@ -142,23 +167,36 @@ int CantidadCartones()
      printf("\n**************** 3- Cartones ************************");
      printf("\n*****************************************************");
      printf("\n");
+	 printf("\n");
+	 SetConsoleTextAttribute (hConsole,4);
+	 printf("------->>> ");
+	 SetConsoleTextAttribute (hConsole,7);
      scanf("%d",&cantidad);        
      }      
      while(cantidad > 3 || cantidad < 1);
      return cantidad;
 }
-void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad)
+void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91])
 {
-	       
-			
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute (hConsole,8);	
 	for (int M=0;M<cantidad;M++)
 	{
 			for( int F=0;F<RENGLONES;F++)
 			{
 				for(int C=0;C<COLUMNAS;C++)
 				{
-					
-					printf(" %d ",carton[M][F][C]);
+					if(Bolitas[carton[M][F][C]] == 0)
+					{
+					SetConsoleTextAttribute (hConsole,8);	
+					}
+					if(Bolitas[carton[M][F][C]] == 1)
+					{
+					SetConsoleTextAttribute (hConsole,10);
+					}
+					printf(" %2d ",carton[M][F][C]);
+					SetConsoleTextAttribute (hConsole,7);
 					
 				}
 				printf(" \n");
