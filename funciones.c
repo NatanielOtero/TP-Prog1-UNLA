@@ -143,13 +143,9 @@ void cargarMatrizManual(int m[][RENGLONES][COLUMNAS],int pos){
 				        resultadoBusqueda = buscarEnMatriz(m,pos,numeroNuevo); //nos da la posicion ---> -1
 				        if(resultadoBusqueda == 0)
 				        {
-				        	printf("Error numero repetido\n");
+				        	printf("Error numero repetido");
 						}
-						if(numeroNuevo>90)
-						{
-							printf("El numero no debe ser superior a 90\n");
-						}
-			        }while(resultadoBusqueda==0 || numeroNuevo>90);
+			        }while(resultadoBusqueda==0);
 			
 			        m[pos][i][j] = numeroNuevo;
 	
