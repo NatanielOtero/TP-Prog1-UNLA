@@ -84,7 +84,8 @@ struct DatosJugador Jugador;
 	SetConsoleTextAttribute (hConsole,7);
 	}
 	
-    cantidadCartones = CantidadCartones();    
+    cantidadCartones = CantidadCartones();
+	char Comprobador[2][cantidadCartones][RENGLONES][COLUMNAS];
     if(cantidadCartones != 0)
     {
     	
@@ -156,11 +157,17 @@ struct DatosJugador Jugador;
     	       	do{
 				system("cls");
 				printf("\n*********************************************");
-				printf("\n************** Bienvenido *******************");
+				printf("\n***************** Bienvenido ****************");
 				printf("\n*********************************************");
-				printf("\n****** -1- Mostrar cartones *****************");
-				printf("\n****** -2- Mostrar cartones maquina *********");
-				printf("\n****** -3- Sacar bolilla ********************");
+				printf("\n****** -1- Mostrar cartones            ******");
+				printf("\n****** -2- Mostrar cartones maquina    ******");
+				printf("\n****** -3- Sacar bolilla               ******");
+				printf("\n****** -4- Cantar Linea                ******");
+				printf("\n****** -5- Cantar Bingo                ******");
+				printf("\n****** -6- Ver Puntajes                ******");
+				printf("\n****** -0- Salir Del Juego             ******");
+				printf("\n*********************************************");
+				printf("\n*********************************************");
 				printf("\n*********************************************");
 	           	printf("\n\n\n");
 				SetConsoleTextAttribute (hConsole,4);
@@ -175,7 +182,7 @@ struct DatosJugador Jugador;
 						printf("\n*************** Cartones Jugador ************");
 						printf("\n*********************************************");
 						printf("\n");
-						MostrarCarton(cartonJugador,cantidadCartones,Bolillas,-98);
+						MostrarCarton(cartonJugador,cantidadCartones,Bolillas,-98,Comprobador,0);
 						getch();
 	           	break;
 	           	case 2:
@@ -184,7 +191,7 @@ struct DatosJugador Jugador;
 						printf("\n*************** Cartones Maquina ************");
 						printf("\n*********************************************");	
 						printf("\n"); 	
-						MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,-98);
+						MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,-98,Comprobador,1);
 						getch();
 	        	break;
 	        	case 3:
@@ -201,18 +208,49 @@ struct DatosJugador Jugador;
 					printf("\n*************** Cartones Jugador ************");
 					printf("\n*********************************************");
 					printf("\n");
-					MostrarCarton(cartonJugador,cantidadCartones,Bolillas,NumActual);
+					MostrarCarton(cartonJugador,cantidadCartones,Bolillas,NumActual,Comprobador,0);
 					getch();
 					
 		           	system("cls");
 		           	printf("\n*********************************************");
 					printf("\n*************** Cartones Maquina ************");
 					printf("\n*********************************************");	
-					printf("\n"); 	
-					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,NumActual);
+					printf("\n"); 
+					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,NumActual,Comprobador,1);
 					getch();
 				break;
-				
+				case 4:
+					system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n***** Hay %d Lineas Completas Marcadas en Rojo *******",
+					ComprobarLinea(cartonJugador,cantidadCartones,Bolillas,Comprobador,0));//Num 0 = Jugador / Num 1 = Maquina	
+	                printf("\n*****************************************************");
+	                getch();
+	                ComprobarLinea(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
+	                					              
+	                system("cls");
+					printf("\n*********************************************");
+					printf("\n*************** Cartones Jugador ************");
+					printf("\n*********************************************");
+					printf("\n");
+					MostrarCarton(cartonJugador,cantidadCartones,Bolillas,NumActual,Comprobador,0);
+					getch();
+					
+		           	system("cls");
+		           	printf("\n*********************************************");
+					printf("\n*************** Cartones Maquina ************");
+					printf("\n*********************************************");	
+					printf("\n"); 
+					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,NumActual,Comprobador,1);
+					getch();
+				break;
+				case 0:
+					system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n*********** Hasta Luego Vuelva Pronto ***************");
+	                printf("\n*****************************************************");
+	                getch();
+				break;
 	        	default:
 	        	    system("cls");
 	                printf("\n*****************************************************");
@@ -222,7 +260,7 @@ struct DatosJugador Jugador;
 	                getch();
 	        	break;
 			   }
-		   }while(OPC != 4);
+		   }while(OPC != 0);
 	
 	
 		   

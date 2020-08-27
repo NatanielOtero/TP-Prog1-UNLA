@@ -176,7 +176,7 @@ int CantidadCartones()
      while(cantidad > 3 || cantidad < 1);
      return cantidad;
 }
-void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],int NumActual)
+void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],int NumActual,char Comp[2][3][RENGLONES][COLUMNAS],int Num)
 {
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -187,21 +187,33 @@ void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 			{
 				for(int C=0;C<COLUMNAS;C++)
 				{
-					if(carton[M][F][C] == NumActual)
+					if(Comp[Num][M][F][C] == 'X')
 					{
-						SetConsoleTextAttribute (hConsole,6);
+						SetConsoleTextAttribute (hConsole,4);
 					}
 					else
 					{
-						if(Bolitas[carton[M][F][C]] == 0)
+						if(carton[M][F][C] == NumActual)
 						{
-							SetConsoleTextAttribute (hConsole,8);
+							SetConsoleTextAttribute (hConsole,6);
 						}
-						if(Bolitas[carton[M][F][C]] == 1)
+						else
 						{
-							SetConsoleTextAttribute (hConsole,10);
+							if(Bolitas[carton[M][F][C]] == 0)
+							{
+								SetConsoleTextAttribute (hConsole,8);
+							}
+							if(Bolitas[carton[M][F][C]] == 1)
+							{
+								SetConsoleTextAttribute (hConsole,10);
+							}
+							if(Bolitas[carton[M][F][C]] == 3)
+							{
+								SetConsoleTextAttribute (hConsole,4);
+							}
 						}
 					}
+
 					printf(" %2d ",carton[M][F][C]);
 					SetConsoleTextAttribute (hConsole,7);
 					
@@ -293,6 +305,42 @@ void vaciar(int Bola[91]){
     {
         Bola[i] = 0;
     }
+}
+
+int ComprobarLinea(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],char Comp[2][3][RENGLONES][COLUMNAS],int Num)
+{
+	//Num 0 = Jugador / Num 1 = Maquina	
+	int cont =0;
+	int acu =0;
+	int aculumnas = 0;
+	
+	for (int M=0;M<cantidad;M++)
+	{
+		for( int F=0;F<RENGLONES;F++)
+		{
+			for(int C=0;C<COLUMNAS;C++)
+			{
+					if(Bolitas[carton[M][F][C]] == 1)
+					{
+						cont=cont+1;
+						Comp[Num][M][F][C]='X';
+					}
+			}
+			if (cont == COLUMNAS)
+			{
+				aculumnas=aculumnas+1;
+			}
+			else
+			{
+				for(int X=0;X<COLUMNAS;X++)
+				{
+					Comp[Num][M][F][X] = 'O';
+				}
+			}
+			cont =0;
+		}
+    }
+    return aculumnas;
 }
 
 
