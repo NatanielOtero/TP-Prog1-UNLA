@@ -121,6 +121,7 @@ struct DatosJugador Jugador;
 		
 		            case 1:
 		                //LLAMAR FUNCION GENERAR POR TECLADO
+		                vaciarCartonPiola(cartonJugador,cantidadCartones);
 		                cargarMatrizManual(cartonJugador,i);
 		               	break;
 		            case 2:

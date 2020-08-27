@@ -311,6 +311,21 @@ void vaciar(int Bola[91]){
     }
 }
 
+void vaciarCartonPiola(int carton[][RENGLONES][COLUMNAS],int cantidad){//se vacia el carton porque estaba 
+//arrastrando mierda en la cargar de carton manual :)
+	
+	for (int M=0;M<cantidad;M++)
+	{
+		for( int F=0;F<RENGLONES;F++)
+		{
+			for(int C=0;C<COLUMNAS;C++)
+			{
+				carton[M][F][C] = 0;
+			}
+    	}
+	}
+}
+
 int ComprobarLinea(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],char Comp[2][3][RENGLONES][COLUMNAS],int Num)
 {
 	//Num 0 = Jugador / Num 1 = Maquina	
