@@ -161,11 +161,12 @@ struct DatosJugador Jugador;
 				printf("\n***************** Bienvenido ****************");
 				printf("\n*********************************************");
 				printf("\n****** -1- Mostrar cartones            ******");
-				printf("\n****** -2- Mostrar cartones maquina    ******");
+				printf("\n****** -2- Sacar 10 Bolitas            ******");
 				printf("\n****** -3- Sacar bolilla               ******");
 				printf("\n****** -4- Cantar Linea                ******");
-				printf("\n****** -5- Cantar Bingo                ******");
-				printf("\n****** -6- Ver Puntajes                ******");
+				printf("\n****** -5- Cantar Columna              ******");
+				printf("\n****** -6- Cantar Bingo                ******");
+				printf("\n****** -7- Ver Puntajes                ******");
 				printf("\n****** -0- Salir Del Juego             ******");
 				printf("\n*********************************************");
 				printf("\n*********************************************");
@@ -185,9 +186,33 @@ struct DatosJugador Jugador;
 						printf("\n");
 						MostrarCarton(cartonJugador,cantidadCartones,Bolillas,-98,Comprobador,0);
 						getch();
+						system("cls");
+		           		printf("\n*********************************************");
+						printf("\n*************** Cartones Maquina ************");
+						printf("\n*********************************************");	
+						printf("\n"); 	
+						MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,-98,Comprobador,1);
+						getch();
 	           	break;
 	           	case 2:
-		           		system("cls");
+					system("cls");
+	                printf("\n*****************************************************");
+	                for(int I=0;I<10;I++)
+	                {
+	                	NumActual = Sacar(Bolillas);
+	                	printf("\n******** Salio EL Numero ----> %2d *******************",NumActual);
+					}
+	                printf("\n*****************************************************");
+	                printf("\n");
+	                getch();
+	                	system("cls");
+						printf("\n*********************************************");
+						printf("\n*************** Cartones Jugador ************");
+						printf("\n*********************************************");
+						printf("\n");
+						MostrarCarton(cartonJugador,cantidadCartones,Bolillas,-98,Comprobador,0);
+						getch();
+						system("cls");
 		           		printf("\n*********************************************");
 						printf("\n*************** Cartones Maquina ************");
 						printf("\n*********************************************");	
@@ -228,6 +253,31 @@ struct DatosJugador Jugador;
 	                printf("\n*****************************************************");
 	                getch();
 	                ComprobarLinea(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
+	                					              
+	                system("cls");
+					printf("\n*********************************************");
+					printf("\n*************** Cartones Jugador ************");
+					printf("\n*********************************************");
+					printf("\n");
+					MostrarCarton(cartonJugador,cantidadCartones,Bolillas,NumActual,Comprobador,0);
+					getch();
+					
+		           	system("cls");
+		           	printf("\n*********************************************");
+					printf("\n*************** Cartones Maquina ************");
+					printf("\n*********************************************");	
+					printf("\n"); 
+					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,NumActual,Comprobador,1);
+					getch();
+				break;
+				case 5:
+					system("cls");
+	                printf("\n*****************************************************");
+	                printf("\n*** Hay %2d Columnas Completas Marcadas en Celeste ***",
+					ComprobarColumna(cartonJugador,cantidadCartones,Bolillas,Comprobador,0));//Num 0 = Jugador / Num 1 = Maquina	
+	                printf("\n*****************************************************");
+	                getch();
+	                ComprobarColumna(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
 	                					              
 	                system("cls");
 					printf("\n*********************************************");

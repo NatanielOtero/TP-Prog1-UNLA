@@ -191,9 +191,15 @@ void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 			{
 				for(int C=0;C<COLUMNAS;C++)
 				{
-					if(Comp[Num][M][F][C] == 'X')
+					if(Comp[Num][M][F][C] == 'L')
 					{
 						SetConsoleTextAttribute (hConsole,4);
+					}else if(Comp[Num][M][F][C] == 'C')
+					{
+						SetConsoleTextAttribute (hConsole,9);
+					}else if(Comp[Num][M][F][C] == 'I')
+					{
+						SetConsoleTextAttribute (hConsole,5);
 					}
 					else
 					{
@@ -342,7 +348,7 @@ int ComprobarLinea(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 					if(Bolitas[carton[M][F][C]] == 1)
 					{
 						cont=cont+1;
-						Comp[Num][M][F][C]='X';
+						Comp[Num][M][F][C]='L';
 					}
 			}
 			if (cont == COLUMNAS)
@@ -354,6 +360,43 @@ int ComprobarLinea(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 				for(int X=0;X<COLUMNAS;X++)
 				{
 					Comp[Num][M][F][X] = 'O';
+				}
+			}
+			cont =0;
+		}
+    }
+    return aculumnas;
+}
+
+int ComprobarColumna(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],char Comp[2][3][RENGLONES][COLUMNAS],int Num)
+{
+	//Num 0 = Jugador / Num 1 = Maquina	
+	int cont =0;
+	int acu =0;
+	int aculumnas = 0;
+	
+	for (int M=0;M<cantidad;M++)
+	{
+		
+		for(int C=0;C<COLUMNAS;C++)
+		{
+			for( int F=0;F<RENGLONES;F++)
+			{
+					if(Bolitas[carton[M][F][C]] == 1)
+					{
+						cont=cont+1;
+						Comp[Num][M][F][C]='C';
+					}
+			}
+			if (cont == RENGLONES)
+			{
+				aculumnas=aculumnas+1;
+			}
+			else
+			{
+				for(int X=0;X<COLUMNAS;X++)
+				{
+					Comp[Num][M][X][C] = 'O';
 				}
 			}
 			cont =0;
