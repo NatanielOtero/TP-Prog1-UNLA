@@ -197,9 +197,6 @@ void MostrarCarton(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 					}else if(Comp[Num][M][F][C] == 'C')
 					{
 						SetConsoleTextAttribute (hConsole,9);
-					}else if(Comp[Num][M][F][C] == 'I')
-					{
-						SetConsoleTextAttribute (hConsole,5);
 					}
 					else
 					{
@@ -341,7 +338,7 @@ int ComprobarLinea(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 	
 	for (int M=0;M<cantidad;M++)
 	{
-		for( int F=0;F<RENGLONES;F++)
+		for(int F=0;F<RENGLONES;F++)
 		{
 			for(int C=0;C<COLUMNAS;C++)
 			{

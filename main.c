@@ -298,6 +298,11 @@ struct DatosJugador Jugador;
 					MostrarCarton(cartonesMaquina,cantidadCartones,Bolillas,NumActual,Comprobador,1);
 					getch();
 				break;
+				case 7:
+					system("cls");
+	                Leer();
+	                getch();
+				break;
 				case 0:
 					system("cls");
 	                printf("\n*****************************************************");
