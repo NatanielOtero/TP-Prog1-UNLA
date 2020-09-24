@@ -348,18 +348,41 @@ int ComprobarLinea(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91
 					if(Bolitas[carton[M][F][C]] == 1)
 					{
 						cont=cont+1;
-						Comp[Num][M][F][C]='L';
+						if(Comp[Num][M][F][C]=='C')
+						{
+							Comp[Num][M][F][C]='X';
+						}
+						else
+						{
+							Comp[Num][M][F][C]='L';
+						}
 					}
 			}
 			if (cont == COLUMNAS)
 			{
 				aculumnas=aculumnas+1;
+				for(int X=0;X<COLUMNAS;X++)
+				{
+				if(Comp[Num][M][F][X]=='X')
+				{
+					Comp[Num][M][F][X]='L';
+				}
+				}
 			}
 			else
 			{
 				for(int X=0;X<COLUMNAS;X++)
 				{
-					Comp[Num][M][F][X] = 'O';
+					if(Comp[Num][M][F][X]=='X')
+					{
+						Comp[Num][M][F][X]='C';
+					}
+					else
+					{
+						Comp[Num][M][F][X] = 'O';
+					}
+						
+					
 				}
 			}
 			cont =0;
@@ -385,7 +408,10 @@ int ComprobarColumna(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[
 					if(Bolitas[carton[M][F][C]] == 1)
 					{
 						cont=cont+1;
-						Comp[Num][M][F][C]='C';
+						if(Comp[Num][M][F][C]!='L')
+						{
+							Comp[Num][M][F][C]='C';	
+						}
 					}
 			}
 			if (cont == RENGLONES)
@@ -396,7 +422,10 @@ int ComprobarColumna(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[
 			{
 				for(int X=0;X<COLUMNAS;X++)
 				{
-					Comp[Num][M][X][C] = 'O';
+					if(Comp[Num][M][X][C]!='L')
+					{
+						Comp[Num][M][X][C] = 'O';
+					}
 				}
 			}
 			cont =0;

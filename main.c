@@ -204,6 +204,8 @@ struct DatosJugador Jugador;
 					}
 	                printf("\n*****************************************************");
 	                printf("\n");
+	                ComprobarColumna(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
+	                ComprobarLinea(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
 	                getch();
 	                	system("cls");
 						printf("\n*********************************************");
@@ -228,7 +230,8 @@ struct DatosJugador Jugador;
 	                printf("\n*****************************************************");
 	                printf("\n");
 	                getch();	  
-					              
+					ComprobarColumna(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
+	                ComprobarLinea(cartonesMaquina,cantidadCartones,Bolillas,Comprobador,1);
 	                system("cls");
 					printf("\n*********************************************");
 					printf("\n*************** Cartones Jugador ************");
