@@ -430,6 +430,28 @@ int ComprobarColumna(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[
     }
     return aculumnas;
 }
-
-
+int ComprobarBingo(int carton[][RENGLONES][COLUMNAS],int cantidad,int Bolitas[91],int Num){
+int cont = 0;
+int Bingo = 0;
+for (int M=0;M<cantidad;M++)
+    {
+    	for(int C=0;C<COLUMNAS;C++)
+        {
+            for( int F=0;F<RENGLONES;F++)
+            {
+                if(Bolitas[carton[M][F][C]] == 1)
+                {
+                    cont=cont+1;
+                }
+            }
+        }
+        if(cont == 15)
+        {
+            Bingo = 10;
+            break;
+        }
+        cont =0;
+    }
+	return Bingo;
+}
 
