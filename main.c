@@ -154,7 +154,7 @@ struct DatosJugador Jugador;
 		       
 		}
 		int OPC;
-		int aprovar = 0;//variable para que cuando valga 1 sea bingo y termine el juego
+		
 			system("cls");
     	       	do{
 				system("cls");
@@ -304,7 +304,7 @@ struct DatosJugador Jugador;
 					if(ComprobarBingo(cartonesMaquina,cantidadCartones,Bolillas,0)== 10)
 					{
 						printf("\n*************** Usted gana ***************\n");
-						aprovar=1;
+						OPC=0;
 					}else{
 						printf("\n*************** No cumple las condiciones para cantar bingo :( ****************\n");
 					}
@@ -328,7 +328,7 @@ struct DatosJugador Jugador;
 	                getch();
 	        	break;
 			   }
-		   }while(OPC != 0 || aprovar != 1);
+		   }while(OPC != 0);
 	
 	
 		   
